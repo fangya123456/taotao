@@ -104,13 +104,15 @@ var TT = TAOTAO = {
     
     // 初始化选择类目组件
     initItemCat : function(data){
+    	//遍历所有.selectItemCat集合 i为索引值 e表示获取遍历每一个dom对象
     	$(".selectItemCat").each(function(i,e){
-    		var _ele = $(e);
+    		var _ele = $(e);  //把原生的dom对象转换为jQuery对象
     		if(data && data.cid){
     			_ele.after("<span style='margin-left:10px;'>"+data.cid+"</span>");
     		}else{
     			_ele.after("<span style='margin-left:10px;'></span>");
     		}
+    		//先解绑然后再进行绑定
     		_ele.unbind('click').click(function(){
     			$("<div>").css({padding:"5px"}).html("<ul>")
     			.window({
@@ -120,7 +122,7 @@ var TT = TAOTAO = {
     			    closed:true,
     			    iconCls:'icon-save',
     			    title:'选择类目',
-    			    onOpen : function(){
+    			    onOpen : function(){ //当窗口打开是触发的函数
     			    	var _win = this;
     			    	$("ul",_win).tree({
     			    		url:'/item/cat/list',
